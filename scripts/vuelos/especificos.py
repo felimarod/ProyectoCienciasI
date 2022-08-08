@@ -88,7 +88,7 @@ fl.close()
 
 # print(cabeceras)
 # print(centinelas)
-RUTA_ARCHIVOS = ""
+# RUTA_ARCHIVOS = ""
 nf = open(RUTA_ARCHIVOS + "vuelos_especificos.txt", "w", encoding="UTF-8")
 id_vuelo_especifico = 1
 viajes_por_avion = 0
@@ -114,7 +114,7 @@ for aerolinea in range(1, 11):
                 "id": id_vuelo_especifico,
                 "id_vuelo_planeado": vuelo_planeado["id"],
                 "id_avion": avion_asignado["id"],
-                "id_modelo_avion": avion_asignado[""],
+                #"id_modelo_avion": avion_asignado[""],
                 "fecha":fecha.strftime("%Y/%m/%d"),
             }
             nf.write(

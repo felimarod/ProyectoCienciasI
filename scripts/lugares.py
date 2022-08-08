@@ -51,11 +51,14 @@ LUGARES = [
     "Riviera Nayarit, México",
     "Portland, Estados Unidos"
 ]
-CARPETA_ARCHIVOS = "../../archivos"
+CARPETA_ARCHIVOS = "../archivos/"
 # CARPETA_ARCHIVOS = ""
 NOMBRE_DOC = "lugares.txt"
 
 nf = open(CARPETA_ARCHIVOS + NOMBRE_DOC, "w")
 for id_lugar in range(1, len(LUGARES)+ 1):
-    nf.write(str(id_lugar) + ";" + LUGARES[id_lugar - 1] + "\n")
+    nf.write(
+			str(id_lugar) + ";"
+			+ LUGARES[id_lugar - 1] + "\n"
+		)
 nf.close()
