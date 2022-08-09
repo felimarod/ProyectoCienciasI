@@ -1,7 +1,1 @@
 *.o
-*.out
-*.d
-
-.ccls-cache/
-.replit
-replit.nix
