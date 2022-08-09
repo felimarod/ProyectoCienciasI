@@ -115,7 +115,7 @@ for aerolinea in range(1, 11):
                 "id_vuelo_planeado": vuelo_planeado["id"],
                 "id_avion": avion_asignado["id"],
                 #"id_modelo_avion": avion_asignado[""],
-                "fecha":fecha.strftime("%Y/%m/%d"),
+                "fecha":fecha.strftime("%m/%d/%Y"),
             }
             nf.write(
                 str(vuelo_especifico["id"]) + ";"
