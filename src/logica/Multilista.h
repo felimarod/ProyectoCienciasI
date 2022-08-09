@@ -24,15 +24,15 @@ class Multilista{
 				cabeceras[i]=-1;
 				
 			for(int i=0; i<200; i++){//inicializacion arreglo de datos
-				datos[i].codigo=NULL;
-				datos[i].origen=NULL;
-				datos[i].destino=NULL;
+				datos[i].codigo=-1;
+				datos[i].origen=-1;
+				datos[i].destino=-1;
 				datos[i].dia="";
 				datos[i].hora_salida="";
-				datos[i].duracion=NULL;
-				datos[i].precio_adulto=NULL;
-				datos[i].precio_ninio=NULL;
-				datos[i].aerolinea=NULL;
+				datos[i].duracion=-1;
+				datos[i].precio_adulto=-1;
+				datos[i].precio_ninio=-1;
+				datos[i].aerolinea=-1;
 				datos[i].sigDestino=-1;
 				datos[i].sigPlanAerolinea=-1;
 				datos[i].sigOrigenDestino=-1;
@@ -47,7 +47,7 @@ class Multilista{
 		}
 		
 		//Metodos (acciones) de la Multilista
-		bool insertar(int codigo, int origen, int destino, string dia, string hora_salida, int duracion, double precio_adulto, double precio_ninio, int aerolinea);
+		bool insertar(int codigo,  int aerolinea, int origen, int destino, string dia, string hora_salida, int duracion, double precio_adulto, double precio_ninio);
 		bool eliminar(int pos);
 		bool multilistaLLena();
 		bool multilistaVacia();
@@ -66,7 +66,7 @@ bool Multilista :: multilistaLLena(){
 	return tam==200;
 }
 
-bool Multilista :: insertar(int codigo, int origen, int destino, string dia, string hora_salida, int duracion, double precio_adulto, double precio_ninio, int aerolinea){
+bool Multilista :: insertar(int codigo,  int aerolinea, int origen, int destino, string dia, string hora_salida, int duracion, double precio_adulto, double precio_ninio){
 	if(multilistaLLena()) return false;
 	
 	VueloPlaneado v;
@@ -88,7 +88,7 @@ bool Multilista :: insertar(int codigo, int origen, int destino, string dia, str
 	
 	/*Proceso para identificar la posicion de guardado del vueloPlaneado*/
 	int i=0;
-	while(datos[i].codigo!=NULL){
+	while(datos[i].codigo!=-1){
 		i++;
 	}
 	
@@ -171,7 +171,7 @@ bool Multilista :: insertar(int codigo, int origen, int destino, string dia, str
 bool Multilista :: eliminar(int pos){
 	if(multilistaVacia()) return false;
   
-	if(datos[pos].codigo!=NULL){
+	if(datos[pos].codigo!=-1){
 	int k,p;
 	p=datos[pos].aerolinea;
   	
@@ -244,15 +244,15 @@ bool Multilista :: eliminar(int pos){
 		}
 	}
 	
-	datos[pos].codigo=NULL;
-	datos[pos].origen=NULL;
-	datos[pos].destino=NULL;
+	datos[pos].codigo=-1;
+	datos[pos].origen=-1;
+	datos[pos].destino=-1;
 	datos[pos].dia="";
 	datos[pos].hora_salida="";
-	datos[pos].duracion=NULL;
-	datos[pos].precio_adulto=NULL;
-	datos[pos].precio_ninio=NULL;
-	datos[pos].aerolinea=NULL;
+	datos[pos].duracion=-1;
+	datos[pos].precio_adulto=-1;
+	datos[pos].precio_ninio=-1;
+	datos[pos].aerolinea=-1;
 	datos[pos].sigDestino=-1;
 	datos[pos].sigOrigenDestino=-1;
 	datos[pos].sigPlanAerolinea=-1;
@@ -301,6 +301,21 @@ void Multilista :: obtenerDestinosAerolinea(int aerolinea){
 VueloPlaneado* Multilista :: obtenerVuelos(int origen, int destino, int op){
 	VueloPlaneado *vuelos;
 	vuelos=new VueloPlaneado[200];
+
+	for(int i=0; i<200; i++){//inicializacion arreglo de vueelos ya filtrados
+				vuelos[i].codigo=-1;
+				vuelos[i].origen=-1;
+				vuelos[i].destino=-1;
+				vuelos[i].dia="";
+				vuelos[i].hora_salida="";
+				vuelos[i].duracion=-1;
+				vuelos[i].precio_adulto=-1;
+				vuelos[i].precio_ninio=-1;
+				vuelos[i].aerolinea=-1;
+				vuelos[i].sigDestino=-1;
+				vuelos[i].sigPlanAerolinea=-1;
+				vuelos[i].sigOrigenDestino=-1;
+			}
 	int i = cabeceras[0],j = 0;
 	while(datos[i].origen!=origen && i != -1){
 		i=datos[i].sigOrigenDestino;
