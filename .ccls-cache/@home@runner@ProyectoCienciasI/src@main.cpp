@@ -8,24 +8,6 @@
 /* run this program using the console pauser or add your own getch,
  * system("pause") or input loop */
 
-void leerArchivo() {
-  ifstream archivo;
-  string texto;
-
-  archivo.open("/home/runner/ProyectoCienciasI/archivos/usuarios.txt", ios::in);
-
-  if (archivo.fail()) {
-    cout << "NO se pudo";
-    exit(1);
-  }
-
-  while (!archivo.eof()) {
-    getline(archivo, texto);
-    cout << texto << endl;
-  }
-  archivo.close();
-}
-
 int main(int argc, char **argv) {
 
   Multilista m;
