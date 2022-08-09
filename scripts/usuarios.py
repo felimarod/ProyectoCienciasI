@@ -102,14 +102,17 @@ USUARIOS = [
 ]
 
 CARPETA_ARCHIVOS = "../archivos/"
-nf = open(CARPETA_ARCHIVOS + "usuarios_script.txt", "w")
+nf = open(CARPETA_ARCHIVOS + "usuarios.txt", "w")
 
+id_usuario = 1
 for usuario in USUARIOS:
-    nf.write(
-        str(usuario["Cedula"]) + ";" + 
-        usuario["name"] + ";" + 
-        usuario["Sexo"]
-        + "\n"
-    )
+	nf.write(
+		str(id_usuario) + ";" +
+		usuario["name"] + ";" + 
+		str(usuario["Cedula"]) + ";" + 
+		usuario["Sexo"]
+		+ "\n"
+	)
+	id_usuario += 1
 
 nf.close()

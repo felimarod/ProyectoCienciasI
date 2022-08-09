@@ -1,4 +1,4 @@
-struct fecha{
+/* struct fecha{
   int dia;
   int mes;
 };
@@ -6,4 +6,4 @@ struct fecha{
 struct hora{
   int hora;
   int minuto;
-};
+}; */
