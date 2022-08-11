@@ -14,7 +14,7 @@ public:
     ifstream file;
     string texto;
 
-    file.open("src/persistencia/archivos/lugares.txt", ios::in); // abriendo el archivo
+    file.open("persistencia/archivos/lugares.txt", ios::in); // abriendo el archivo
 
     if (file.fail())
       return NULL;
@@ -41,18 +41,20 @@ private:
     while (!rawCola->isEmpty()) {
       Lugar lu;
       linea = rawCola->desencolar();
-      datos_separados = split(linea);
+      if (linea != "") {
+        datos_separados = split(linea);
 
-      if (datos_separados->colaVacia())
-        cout << "La cola esta vacia \n";
+        if (datos_separados->colaVacia())
+          cout << "La cola esta vacia \n";
 
-      lu.idLugar = atoi((datos_separados->desencolar()).c_str());
-      cout << lu.idLugar<<endl;
+        lu.idLugar = atoi((datos_separados->desencolar()).c_str());
+        cout << lu.idLugar<<endl;
       
-      lu.nombre = datos_separados->desencolar();
-      cout << lu.nombre << endl;
+        lu.nombre = datos_separados->desencolar();
+        cout << lu.nombre << endl;
 
-      datos[pos++] = lu;
+        datos[pos++] = lu;
+  	  }
     }
     return datos;
   }

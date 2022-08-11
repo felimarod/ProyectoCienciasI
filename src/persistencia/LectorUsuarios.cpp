@@ -14,7 +14,7 @@ public:
     ifstream file;
     string texto;
 
-    file.open("src/persistencia/archivos/usuarios.txt",
+    file.open("persistencia/archivos/usuarios.txt",
               ios::in); // abriendo el archivo
 
     if (file.fail())
@@ -42,25 +42,27 @@ private:
     while (!rawCola->isEmpty()) {
       Usuario u;
       linea = rawCola->desencolar();
-      datos_separados = split(linea);
+      if(linea != ""){
+      	datos_separados = split(linea);
 
-      if (datos_separados->colaVacia())
-        cout << "La cola esta vacia \n";
+        if (datos_separados->colaVacia())
+          cout << "La cola esta vacia \n";
 
-      // datos[pos].idUsuario = atoi((datos_separados->desencolar()).c_str());
-      u.idUsuario = atoi((datos_separados->desencolar()).c_str());
-      cout << u.idUsuario << endl;
+        // datos[pos].idUsuario = atoi((datos_separados->desencolar()).c_str());
+        u.idUsuario = atoi((datos_separados->desencolar()).c_str());
+        cout << u.idUsuario << endl;
       
-      u.nombre = datos_separados->desencolar();
-      cout << u.nombre << endl;
+        u.nombre = datos_separados->desencolar();
+        cout << u.nombre << endl;
       
-      u.numeroDocumento = atoi((datos_separados->desencolar()).c_str());
-      cout << u.numeroDocumento << endl;
+        u.numeroDocumento = atoi((datos_separados->desencolar()).c_str());
+        cout << u.numeroDocumento << endl;
       
-      u.sexo = datos_separados->desencolar();
-      cout << u.sexo << endl;
+        u.sexo = datos_separados->desencolar();
+        cout << u.sexo << endl;
 
-      datos[pos++] = u;
+        datos[pos++] = u;	
+	  }
     }
     return datos;
   }

@@ -14,7 +14,7 @@ public:
     ifstream file;
     string texto;
 
-    file.open("src/persistencia/archivos/aviones.txt", ios::in); // abriendo el archivo
+    file.open("persistencia/archivos/aviones.txt", ios::in); // abriendo el archivo
 
     if (file.fail())
       return NULL;
@@ -41,21 +41,24 @@ private:
     while (!rawCola->isEmpty()) {
       Avion av;
       linea = rawCola->desencolar();
-      datos_separados = split(linea);
+      if (linea != "") {
 
-      if (datos_separados->colaVacia())
-        cout << "La cola esta vacia \n";
+        datos_separados = split(linea);
 
-      av.idAvion = atoi((datos_separados->desencolar()).c_str());
-      cout << av.idAvion << endl;
+        if (datos_separados->colaVacia())
+          cout << "La cola esta vacia \n";
+
+        av.idAvion = atoi((datos_separados->desencolar()).c_str());
+        cout << av.idAvion << endl;
       
-      av.capacidad = atoi((datos_separados->desencolar()).c_str());
-      cout << av.capacidad << endl;
+        av.capacidad = atoi((datos_separados->desencolar()).c_str());
+        cout << av.capacidad << endl;
       
-      av.idAerolinea = atoi((datos_separados->desencolar()).c_str());
-      cout << av.idAerolinea << endl;
+        av.idAerolinea = atoi((datos_separados->desencolar()).c_str());
+        cout << av.idAerolinea << endl;
 
-      datos[pos++] = av;
+        datos[pos++] = av;
+      }
     }
     return datos;
   }

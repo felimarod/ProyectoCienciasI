@@ -14,7 +14,7 @@ public:
     ifstream file;
     string texto;
 
-    file.open("src/persistencia/archivos/modelos_aviones.txt", ios::in); // abriendo el archivo
+    file.open("persistencia/archivos/modelos_aviones.txt", ios::in); // abriendo el archivo
 
     if (file.fail())
       return NULL;
@@ -41,21 +41,23 @@ private:
     while (!rawCola->isEmpty()) {
       ModeloAvion mda;
       linea = rawCola->desencolar();
-      datos_separados = split(linea);
+	  if (linea != "") {
+	    datos_separados = split(linea);
 
-      if (datos_separados->colaVacia())
-        cout << "La cola esta vacia \n";
+        if (datos_separados->colaVacia())
+          cout << "La cola esta vacia \n";
 
-      mda.idModeloAvion = atoi((datos_separados->desencolar()).c_str());
-      cout << mda.idModeloAvion<<endl;
+        mda.idModeloAvion = atoi((datos_separados->desencolar()).c_str());
+        cout << mda.idModeloAvion<<endl;
       
-      mda.nombre = datos_separados->desencolar();
-      cout << mda.nombre << endl;
+        mda.nombre = datos_separados->desencolar();
+        cout << mda.nombre << endl;
       
-      mda.capacidad = atoi((datos_separados->desencolar()).c_str());
-      cout << mda.capacidad<<endl;
+        mda.capacidad = atoi((datos_separados->desencolar()).c_str());
+        cout << mda.capacidad<<endl;
 
-      datos[pos++] = mda;
+        datos[pos++] = mda;
+      }
     }
     return datos;
   }

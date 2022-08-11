@@ -4,7 +4,7 @@ using namespace std;
 class Pasajero {
 public:
   int idPasajero;
-  string numeroDocumento;
+  int numeroDocumento;
   string nombre;
   string fechaNac;
   int adulto;

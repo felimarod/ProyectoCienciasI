@@ -44,22 +44,23 @@ private:
     while (!rawCola->isEmpty()) {
       Silla s;
       linea = rawCola->desencolar();
-      datos_separados = split(linea);
+ 	  if(linea != "") {
+      	datos_separados = split(linea);
 
-      if (datos_separados->colaVacia())
-        cout << "La cola esta vacia \n";
+        if (datos_separados->colaVacia())
+          cout << "La cola esta vacia \n";
 
-      s.id_silla = atoi((datos_separados->desencolar()).c_str());
-      //cout << s.id_silla<<endl;
+        s.id_silla = atoi((datos_separados->desencolar()).c_str());
+        //cout << s.id_silla<<endl;
       
-      s.idModeloAvion = atoi((datos_separados->desencolar()).c_str());
-      //cout << s.idModeloAvion<<endl;
+        s.idModeloAvion = atoi((datos_separados->desencolar()).c_str());
+        //cout << s.idModeloAvion<<endl;
       
-      s.posicion = datos_separados->desencolar();
-      //cout << s.posicion << endl;
-      datos[pos++] = s;
+        s.posicion = datos_separados->desencolar();
+        //cout << s.posicion << endl;
+        datos[pos++] = s;	
+	  }
     }
-    
     return datos;
   }
 

@@ -14,7 +14,7 @@ public:
     ifstream file;
     string texto;
 
-    file.open("src/persistencia/archivos/aerolineas.txt", ios::in); // abriendo el archivo
+    file.open("persistencia/archivos/aerolineas.txt", ios::in); // abriendo el archivo
 
     if (file.fail())
       return NULL;
@@ -41,21 +41,24 @@ private:
     while (!rawCola->isEmpty()) {
       Aerolinea a;
       linea = rawCola->desencolar();
-      datos_separados = split(linea);
+      if (linea != "") {
 
-      if (datos_separados->colaVacia())
-        cout << "La cola esta vacia \n";
+        datos_separados = split(linea);
 
-      a.codigo = atoi((datos_separados->desencolar()).c_str());
-      cout << a.codigo << endl;
+        if (datos_separados->colaVacia())
+          cout << "La cola esta vacia \n";
+
+        a.codigo = atoi((datos_separados->desencolar()).c_str());
+        cout << a.codigo << endl;
       
-      a.nombre = datos_separados->desencolar();
-      cout << a.nombre << endl;
+        a.nombre = datos_separados->desencolar();
+        cout << a.nombre << endl;
       
-      a.cuenta_bancaria = datos_separados->desencolar();
-      cout << a.cuenta_bancaria << endl;
+        a.cuenta_bancaria = datos_separados->desencolar();
+        cout << a.cuenta_bancaria << endl;
 
-      datos[pos++] = a;
+        datos[pos++] = a;
+	  }
     }
     return datos;
   }

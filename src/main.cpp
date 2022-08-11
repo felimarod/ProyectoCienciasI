@@ -66,17 +66,17 @@ int main(int argc, char **argv) {
   //consumir datos del archivo de modelos_aviones
   ModeloAvion *dataMda;
   LectorModelosAviones lectorMda;
-  //dataMda = lectorMda.obtenerDatos(); 
+  dataMda = lectorMda.obtenerDatos(); 
   
   //consumir datos del archivo de pasajeros
   Pasajero *dataP;
   LectorPasajeros lectorP;
-  dataP = lectorP.obtenerDatos(); 
+  //dataP = lectorP.obtenerDatos(); 
   
   //consumir datos del archivo de Sillas
   Silla *dataS;
   LectorSillas lectorS;
-  //dataS = lectorS.obtenerDatos(); 
+  dataS = lectorS.obtenerDatos(); 
   
   
   int op = 0;

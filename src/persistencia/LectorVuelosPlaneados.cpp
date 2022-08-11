@@ -14,7 +14,7 @@ public:
 	    ifstream file;
 	    string texto;
 	
-	    file.open("src/persistencia/archivos/vuelos_planeados.txt", ios::in); // abriendo el archivo
+	    file.open("persistencia/archivos/vuelos_planeados.txt", ios::in); // abriendo el archivo
 	
 	    if (file.fail())
 	      return NULL;
@@ -41,39 +41,41 @@ private:
     while (!rawCola->isEmpty()) {
       VueloPlaneado vp;
       linea = rawCola->desencolar();
-      datos_separados = split(linea);
+      if(linea != "") {
+      	datos_separados = split(linea);
 
-      if (datos_separados->colaVacia())
-        cout << "La cola esta vacia \n";
+        if (datos_separados->colaVacia())
+          cout << "La cola esta vacia \n";
 
-      vp.id_vuelo = atoi((datos_separados->desencolar()).c_str());
-      cout << vp.id_vuelo << endl;
+        vp.id_vuelo = atoi((datos_separados->desencolar()).c_str());
+        cout << vp.id_vuelo << endl;
       
-      vp.idAerolinea = atoi((datos_separados->desencolar()).c_str());
-      cout << vp.idAerolinea << endl;
+        vp.idAerolinea = atoi((datos_separados->desencolar()).c_str());
+        cout << vp.idAerolinea << endl;
       
-      vp.origen = atoi((datos_separados->desencolar()).c_str());
-      cout << vp.origen << endl;
+        vp.origen = atoi((datos_separados->desencolar()).c_str());
+        cout << vp.origen << endl;
       
-      vp.destino = atoi((datos_separados->desencolar()).c_str());
-      cout << vp.destino << endl;
+        vp.destino = atoi((datos_separados->desencolar()).c_str());
+        cout << vp.destino << endl;
       
-      vp.dia = atoi((datos_separados->desencolar()).c_str());
-      cout << vp.dia << endl;
+        vp.dia = atoi((datos_separados->desencolar()).c_str());
+        cout << vp.dia << endl;
       
-      vp.hora_inicio = datos_separados->desencolar(); //la hora que se desencola debe ser de tipo (struct hora)
-      cout << vp.hora_inicio << endl;
+        vp.hora_inicio = datos_separados->desencolar(); //la hora que se desencola debe ser de tipo (struct hora)
+        cout << vp.hora_inicio << endl;
       
-      vp.duracion = atoi((datos_separados->desencolar()).c_str());
-      cout << vp.duracion << endl;
+        vp.duracion = atoi((datos_separados->desencolar()).c_str());
+        cout << vp.duracion << endl;
       
-      vp.precio_adulto = atoi((datos_separados->desencolar()).c_str());
-      cout << vp.precio_adulto << endl;
+        vp.precio_adulto = atoi((datos_separados->desencolar()).c_str());
+        cout << vp.precio_adulto << endl;
       
-      vp.precio_ninio = atoi((datos_separados->desencolar()).c_str());
-      cout << vp.precio_ninio << endl;
+        vp.precio_ninio = atoi((datos_separados->desencolar()).c_str());
+        cout << vp.precio_ninio << endl;
 
-      datos[pos++] = vp;
+        datos[pos++] = vp;	
+	  }
     }
     return datos;
   }

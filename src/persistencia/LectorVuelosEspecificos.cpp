@@ -14,7 +14,7 @@ public:
 	    ifstream file;
 	    string texto;
 	
-	    file.open("src/persistencia/archivos/vuelos_especificos.txt", ios::in); // abriendo el archivo
+	    file.open("persistencia/archivos/vuelos_especificos.txt", ios::in); // abriendo el archivo
 	
 	    if (file.fail())
 	      return NULL;
@@ -41,24 +41,26 @@ private:
     while (!rawCola->isEmpty()) {
       VueloEspecifico ve;
       linea = rawCola->desencolar();
-      datos_separados = split(linea);
+      if(linea != ""){
+      	datos_separados = split(linea);
 
-      if (datos_separados->colaVacia())
-        cout << "La cola esta vacia \n";
+        if (datos_separados->colaVacia())
+          cout << "La cola esta vacia \n";
 
-      ve.idVueloEspecifico = atoi((datos_separados->desencolar()).c_str());
-      cout << ve.idVueloEspecifico << endl;
+        ve.idVueloEspecifico = atoi((datos_separados->desencolar()).c_str());
+        cout << ve.idVueloEspecifico << endl;
       
-      ve.idVueloPlaneado = atoi((datos_separados->desencolar()).c_str());
-      cout << ve.idVueloPlaneado << endl;
+        ve.idVueloPlaneado = atoi((datos_separados->desencolar()).c_str());
+        cout << ve.idVueloPlaneado << endl;
       
-      ve.idModeloAvion = atoi((datos_separados->desencolar()).c_str());
-      cout << ve.idModeloAvion << endl;
+        ve.idModeloAvion = atoi((datos_separados->desencolar()).c_str());
+        cout << ve.idModeloAvion << endl;
       
-      ve.fecha_vuelo = datos_separados->desencolar();
-      cout << ve.fecha_vuelo << endl;
+        ve.fecha_vuelo = datos_separados->desencolar();
+        cout << ve.fecha_vuelo << endl;
       
-      datos[pos++] = ve;
+        datos[pos++] = ve;	
+	  }
     }
     return datos;
   }
