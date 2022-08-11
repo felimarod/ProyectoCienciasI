@@ -1,0 +1,97 @@
+# Project: Project1
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = logica/Estructuras.o logica/VueloPlaneado.o persistencia/LectorAerolineas.o persistencia/LectorAviones.o persistencia/LectorLugares.o persistencia/LectorModelosAviones.o persistencia/LectorPasajeros.o persistencia/LectorSillas.o persistencia/LectorUsuarios.o persistencia/LectorVuelosEspecificos.o persistencia/LectorVuelosPlaneados.o modelos/Aerolinea.o modelos/Avion.o modelos/Itinerario.o modelos/ItinerarioPasajero.o modelos/Lugar.o modelos/ModeloAvion.o modelos/Pasajero.o modelos/Silla.o modelos/SillaVendida.o modelos/Usuario.o modelos/VueloEspecifico.o modelos/VueloPlaneado.o main.o
+LINKOBJ  = logica/Estructuras.o logica/VueloPlaneado.o persistencia/LectorAerolineas.o persistencia/LectorAviones.o persistencia/LectorLugares.o persistencia/LectorModelosAviones.o persistencia/LectorPasajeros.o persistencia/LectorSillas.o persistencia/LectorUsuarios.o persistencia/LectorVuelosEspecificos.o persistencia/LectorVuelosPlaneados.o modelos/Aerolinea.o modelos/Avion.o modelos/Itinerario.o modelos/ItinerarioPasajero.o modelos/Lugar.o modelos/ModeloAvion.o modelos/Pasajero.o modelos/Silla.o modelos/SillaVendida.o modelos/Usuario.o modelos/VueloEspecifico.o modelos/VueloPlaneado.o main.o
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = Project1.exe
+CXXFLAGS = $(CXXINCS) 
+CFLAGS   = $(INCS) 
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+logica/Estructuras.o: logica/Estructuras.cpp
+	$(CPP) -c logica/Estructuras.cpp -o logica/Estructuras.o $(CXXFLAGS)
+
+logica/VueloPlaneado.o: logica/VueloPlaneado.cpp
+	$(CPP) -c logica/VueloPlaneado.cpp -o logica/VueloPlaneado.o $(CXXFLAGS)
+
+persistencia/LectorAerolineas.o: persistencia/LectorAerolineas.cpp
+	$(CPP) -c persistencia/LectorAerolineas.cpp -o persistencia/LectorAerolineas.o $(CXXFLAGS)
+
+persistencia/LectorAviones.o: persistencia/LectorAviones.cpp
+	$(CPP) -c persistencia/LectorAviones.cpp -o persistencia/LectorAviones.o $(CXXFLAGS)
+
+persistencia/LectorLugares.o: persistencia/LectorLugares.cpp
+	$(CPP) -c persistencia/LectorLugares.cpp -o persistencia/LectorLugares.o $(CXXFLAGS)
+
+persistencia/LectorModelosAviones.o: persistencia/LectorModelosAviones.cpp
+	$(CPP) -c persistencia/LectorModelosAviones.cpp -o persistencia/LectorModelosAviones.o $(CXXFLAGS)
+
+persistencia/LectorPasajeros.o: persistencia/LectorPasajeros.cpp
+	$(CPP) -c persistencia/LectorPasajeros.cpp -o persistencia/LectorPasajeros.o $(CXXFLAGS)
+
+persistencia/LectorSillas.o: persistencia/LectorSillas.cpp
+	$(CPP) -c persistencia/LectorSillas.cpp -o persistencia/LectorSillas.o $(CXXFLAGS)
+
+persistencia/LectorUsuarios.o: persistencia/LectorUsuarios.cpp
+	$(CPP) -c persistencia/LectorUsuarios.cpp -o persistencia/LectorUsuarios.o $(CXXFLAGS)
+
+persistencia/LectorVuelosEspecificos.o: persistencia/LectorVuelosEspecificos.cpp
+	$(CPP) -c persistencia/LectorVuelosEspecificos.cpp -o persistencia/LectorVuelosEspecificos.o $(CXXFLAGS)
+
+persistencia/LectorVuelosPlaneados.o: persistencia/LectorVuelosPlaneados.cpp
+	$(CPP) -c persistencia/LectorVuelosPlaneados.cpp -o persistencia/LectorVuelosPlaneados.o $(CXXFLAGS)
+
+modelos/Aerolinea.o: modelos/Aerolinea.cpp
+	$(CPP) -c modelos/Aerolinea.cpp -o modelos/Aerolinea.o $(CXXFLAGS)
+
+modelos/Avion.o: modelos/Avion.cpp
+	$(CPP) -c modelos/Avion.cpp -o modelos/Avion.o $(CXXFLAGS)
+
+modelos/Itinerario.o: modelos/Itinerario.cpp
+	$(CPP) -c modelos/Itinerario.cpp -o modelos/Itinerario.o $(CXXFLAGS)
+
+modelos/ItinerarioPasajero.o: modelos/ItinerarioPasajero.cpp
+	$(CPP) -c modelos/ItinerarioPasajero.cpp -o modelos/ItinerarioPasajero.o $(CXXFLAGS)
+
+modelos/Lugar.o: modelos/Lugar.cpp
+	$(CPP) -c modelos/Lugar.cpp -o modelos/Lugar.o $(CXXFLAGS)
+
+modelos/ModeloAvion.o: modelos/ModeloAvion.cpp
+	$(CPP) -c modelos/ModeloAvion.cpp -o modelos/ModeloAvion.o $(CXXFLAGS)
+
+modelos/Pasajero.o: modelos/Pasajero.cpp
+	$(CPP) -c modelos/Pasajero.cpp -o modelos/Pasajero.o $(CXXFLAGS)
+
+modelos/Silla.o: modelos/Silla.cpp
+	$(CPP) -c modelos/Silla.cpp -o modelos/Silla.o $(CXXFLAGS)
+
+modelos/SillaVendida.o: modelos/SillaVendida.cpp
+	$(CPP) -c modelos/SillaVendida.cpp -o modelos/SillaVendida.o $(CXXFLAGS)
+
+modelos/Usuario.o: modelos/Usuario.cpp
+	$(CPP) -c modelos/Usuario.cpp -o modelos/Usuario.o $(CXXFLAGS)
+
+modelos/VueloEspecifico.o: modelos/VueloEspecifico.cpp
+	$(CPP) -c modelos/VueloEspecifico.cpp -o modelos/VueloEspecifico.o $(CXXFLAGS)
+
+modelos/VueloPlaneado.o: modelos/VueloPlaneado.cpp
+	$(CPP) -c modelos/VueloPlaneado.cpp -o modelos/VueloPlaneado.o $(CXXFLAGS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)

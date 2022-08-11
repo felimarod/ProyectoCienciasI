@@ -1,0 +1,10 @@
+1;Aeromexico;3801189715
+2;LATAM Airlines Group;8774557548
+3;Avianca;4167093298
+4;Copa Airlines Colombia;6919143996
+5;Sky Airline;2598774124
+6;SATENA;8682406427
+7;Qatar Airways;8838503074
+8;Cathay Pacific Airways;9754526661
+9;Singapore Airlines;8064888097
+10;Emirates;6256572692

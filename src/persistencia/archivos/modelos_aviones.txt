@@ -1,0 +1,9 @@
+1;Boeing 747;584
+2;Boeing 777;550
+3;Boeing 737;130
+4;Boeing 787 Dreamliner;323
+5;Boeing 757;289
+6;Boeing 767;375
+7;Boeing 727;189
+8;A320;220
+9;A380;407

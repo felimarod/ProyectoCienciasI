@@ -1,0 +1,50 @@
+1;Ras al-Jaima, Emiratos Árabes Unidos
+2;Park City, Utah, Estados Unidos
+3;Islas Galápagos, Ecuador
+4;Dolní Morava, República Checa
+5;Seúl, Corea del Sur
+6;Gran Barrera de Coral, Australia
+7;Doha, Catar
+8;Detroit, Estados Unidos
+9;Kerala, India
+10;El Ártico
+11;Ahmedabad, India
+12;Nairobi, Kenobi
+13;Valencia, España
+14;Queenstown, Nueva Zelanda
+15;Parque Nacional Hwange, Zimbabue
+16;Sitios históricos de la Ruta de la Seda, Uzbekistán
+17;San Pablo, Brasil
+18;Sendero Trans Bután, Bután
+19;Devon, Inglaterra
+20;Bali, Indonesia
+21;Estación Espacial Internacional
+22;Kyūshū, Japón
+23;Rapa Nui, Chile
+24;Salta, Argentina
+25;Portree, Escocia
+26;Tofino, Columbia Británica, Canadá
+27;Borácay, Filipinas
+28;Madeira, Portugal
+29;Franschhoek, Sudáfrica
+30;Miami, Estados Unidos
+31;El Chaltén, Argentina
+32;Bogotá, Colombia
+33;El Alentejo, Portugal
+34;Parque Nacional del Bajo Zambeze, Zambia
+35;Kaunas, Lituania
+36;Islas Setouchi, Japón
+37;Calabria, Italia
+38;San Francisco, Estados Unidos
+39;Skellefteå, Suecia
+40;Copenhague, Dinamarca
+41;Marsella, Francia
+42;Salónica, Grecia
+43;Estambul, Turquía
+44;Ilulissat, Groenlandia
+45;Jamaica
+46;Fremantle, Australia
+47;Toronto, Canadá
+48;Kigali, Ruanda
+49;Riviera Nayarit, México
+50;Portland, Estados Unidos

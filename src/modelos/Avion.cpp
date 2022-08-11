@@ -1,7 +1,9 @@
 #include <iostream>
 using namespace std;
 
-class Avion{
-  string tipo;
+class Avion {
+public:
+  int idAvion;
+  int idAerolinea;
   int capacidad;
 };
