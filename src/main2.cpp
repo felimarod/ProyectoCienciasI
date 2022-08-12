@@ -24,6 +24,10 @@ listaPlaneados listaVp;
 LectorLugares lectorLu;
 listaLugar listaLu;
 
+LectorVuelosEspecificos lectorVE;
+listaEspecificos listaVE;
+VueloEspecifico *ve;
+
 Multilista m;
 
 void cargarDatos();
@@ -87,6 +91,7 @@ void cargarDatos() {
   listaA = lectorA.obtenerDatos();
   listaVp = lectorVp.obtenerDatos();
   listaLu = lectorLu.obtenerDatos();
+  listaVE = lectorVE.obtenerDatos();
   for (int i = 1; i < listaVp.tamLista(); i++) {
     vp = listaVp.buscarVueloPlaneado(i);
     d = vp->dia;
@@ -233,6 +238,25 @@ int seleccionarDestino(int id_origen) {
   } while (!estaEnElFiltro);
   return v[i].destino;
 }
+
+Cola<int> *splitFecha(string str) {
+  char SEP = '/';
+
+  int posInit = 0;
+  int posFound = 0;
+  string splitted;
+  Cola<int> *results = new Cola<int>;
+
+  while (posFound >= 0) {
+    posFound = str.find(SEP, posInit);
+    splitted = str.substr(posInit, posFound - posInit);
+    posInit = posFound + 1;
+    results->encolar(atoi(splitted.c_str()));
+  }
+
+  return results;
+}
+
 void menuUsuario() {
   limpiar();
   /* Comprar tickets
@@ -252,8 +276,7 @@ void menuUsuario() {
     op_origen = seleccionarOrigen();
     op_destino = seleccionarDestino(op_origen);
 
-    cout << "Llego este destino: " << listaLu.buscarLugar(op_origen) << endl;
-    //limpiar();
+    limpiar();
     cout << "Comprarás un vuelo de " << listaLu.buscarLugar(op_origen)->nombre
          << " a " << listaLu.buscarLugar(op_destino)->nombre
          << "\n\n¿Confirmas?(1.Si\t2.No)\n";
@@ -276,14 +299,76 @@ void menuUsuario() {
 
   VueloPlaneado *vuelos = m.obtenerVuelos(op_origen, op_destino, op_ord);
   int i = 0;
-  while (vuelos[i].codigo != -1){
-    cout << vuelos[i].codigo << "\t";
-    if (op_ord == 0)
-      cout << vuelos[i].precio_adulto << "\n";
-    else if (op_ord == 1)
-      cout << vuelos[i].precio_ninio << "\n";
-    else if (op_ord == 2)
-      cout << vuelos[i].duracion << "\n";
-    i++;
+  int op_vp = -1;
+  bool existe_vp = false;
+
+  do {
+    limpiar();
+    cout << endl;
+    while (vuelos[i].codigo != -1) {
+      cout << "Codigo: " << vuelos[i].codigo << "\nDía: " << vuelos[i].dia
+           << "\nHora de salida: " << vuelos[i].hora_salida
+           << "\nPrecio Adulto: " << vuelos[i].precio_adulto
+           << "\nPrecio Ninio: " << vuelos[i].precio_ninio
+           << "\nDuración: " << vuelos[i].duracion << "\n\n";
+      i++;
+    }
+    cout << "Ingresa el codigo del vuelo seleccionado: ";
+    cin >> op_vp;
+    for (i = 0; vuelos[i].codigo != -1; i++) {
+      if (vuelos[i].codigo == op_vp) {
+        existe_vp = true;
+        break;
+      }
+    }
+  } while (!existe_vp);
+
+  /* Filtrar por vuelos espcificos dado:
+   * Id vuelo planeado, mes y un año */
+  nodoE *e = listaVE.obtenerCab();
+  int mes = -1;
+  int anio = -1;
+
+  limpiar();
+  cout << "Codigo: " << vuelos[i].codigo << "\nDía: " << vuelos[i].dia
+       << "\nHora de salida: " << vuelos[i].hora_salida
+       << "\nPrecio Adulto: " << vuelos[i].precio_adulto
+       << "\nPrecio Ninio: " << vuelos[i].precio_ninio
+       << "\nDuración: " << vuelos[i].duracion << "\n\n";
+  cout << "Ingrese el número del mes en que desea viajar(1-12): ";
+  cin >> mes;
+  cout << "Ingrese el año en que desea viajar(2022-2023): ";
+  cin >> anio;
+
+  limpiar();
+  if (!listaVE.listaVacia()) {
+    while (e != NULL) {
+      if (e->info.idVueloPlaneado == op_vp) {
+        cout << "Aerolinea: " << listaA.buscarAerolinea(vuelos[i].aerolinea)->nombre 
+          << "\nDía: " << vuelos[i].dia
+             << "\nHora de salida: " << vuelos[i].hora_salida
+             << "\nPrecio Adulto: " << vuelos[i].precio_adulto
+             << "\nPrecio Ninio: " << vuelos[i].precio_ninio
+             << "\nDuración: " << vuelos[i].duracion << "\n\n";
+        break;
+      }
+      // cout << "Id Vuelo: " << e->info.idVueloPlaneado
+      //""<< endl;
+      e = e->sigPlan;
+    }
+    while (e != NULL) {
+      Cola<int> *f = splitFecha(e->info.fecha_vuelo);
+      if (f->desencolar() == mes) {
+        f->desencolar();
+        if (f->desencolar() == anio) {
+          cout << "\n\nCodigo del vuelo: " << e->info.idVueloEspecifico
+               << "\nFecha: " << e->info.fecha_vuelo << endl;
+        }
+      }
+      if (e->info.idVueloPlaneado != (e->sig->info).idVueloPlaneado) {
+        break;
+      }
+      e = e->sig;
+    }
   }
 }
