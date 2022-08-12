@@ -271,6 +271,13 @@ void menuUsuario() {
   bool exitoso = false;
   int acepta = 0;
   op_origen = op_destino = op_ord = -1;
+  int i = 0;
+  int op_vp = -1;
+  bool existe_vp = false;
+  nodoE *e = listaVE.obtenerCab();
+  int mes = -1;
+  int anio = -1;
+  Cola<int> *f;
 
   do {
     op_origen = seleccionarOrigen();
@@ -298,9 +305,6 @@ void menuUsuario() {
   }
 
   VueloPlaneado *vuelos = m.obtenerVuelos(op_origen, op_destino, op_ord);
-  int i = 0;
-  int op_vp = -1;
-  bool existe_vp = false;
 
   do {
     limpiar();
@@ -325,9 +329,6 @@ void menuUsuario() {
 
   /* Filtrar por vuelos espcificos dado:
    * Id vuelo planeado, mes y un año */
-  nodoE *e = listaVE.obtenerCab();
-  int mes = -1;
-  int anio = -1;
 
   limpiar();
   cout << "Codigo: " << vuelos[i].codigo << "\nDía: " << vuelos[i].dia
@@ -339,17 +340,17 @@ void menuUsuario() {
   cin >> mes;
   cout << "Ingrese el año en que desea viajar(2022-2023): ";
   cin >> anio;
-
   limpiar();
   if (!listaVE.listaVacia()) {
     while (e != NULL) {
       if (e->info.idVueloPlaneado == op_vp) {
-        cout << "Aerolinea: " << listaA.buscarAerolinea(vuelos[i].aerolinea)->nombre 
-          << "\nDía: " << vuelos[i].dia
+        cout << "Aerolinea: "
+             << listaA.buscarAerolinea(vuelos[i].aerolinea)->nombre
+             << "\nDía: " << vuelos[i].dia
              << "\nHora de salida: " << vuelos[i].hora_salida
              << "\nPrecio Adulto: " << vuelos[i].precio_adulto
              << "\nPrecio Ninio: " << vuelos[i].precio_ninio
-             << "\nDuración: " << vuelos[i].duracion << "\n\n";
+             << "\nDuración: " << vuelos[i].duracion << "\n";
         break;
       }
       // cout << "Id Vuelo: " << e->info.idVueloPlaneado
@@ -357,11 +358,11 @@ void menuUsuario() {
       e = e->sigPlan;
     }
     while (e != NULL) {
-      Cola<int> *f = splitFecha(e->info.fecha_vuelo);
+      f = splitFecha(e->info.fecha_vuelo);
       if (f->desencolar() == mes) {
         f->desencolar();
         if (f->desencolar() == anio) {
-          cout << "\n\nCodigo del vuelo: " << e->info.idVueloEspecifico
+          cout << "\nCodigo del vuelo: " << e->info.idVueloEspecifico
                << "\nFecha: " << e->info.fecha_vuelo << endl;
         }
       }
