@@ -47,7 +47,7 @@ class Multilista{
 		}
 		
 		//Metodos (acciones) de la Multilista
-		bool insertar(int codigo,  int aerolinea, int origen, int destino, string dia, string hora_salida, int duracion, double precio_adulto, double precio_ninio);
+		bool insertar(int codigo,  int aerolinea, int origen, int destino, string dia, string hora_salida, int duracion, int precio_adulto, int precio_ninio);
 		bool eliminar(int pos);
 		bool multilistaLLena();
 		bool multilistaVacia();
@@ -66,7 +66,7 @@ bool Multilista :: multilistaLLena(){
 	return tam==200;
 }
 
-bool Multilista :: insertar(int codigo,  int aerolinea, int origen, int destino, string dia, string hora_salida, int duracion, double precio_adulto, double precio_ninio){
+bool Multilista :: insertar(int codigo,  int aerolinea, int origen, int destino, string dia, string hora_salida, int duracion, int precio_adulto, int precio_ninio){
 	if(multilistaLLena()) return false;
 	
 	VueloPlaneado v;

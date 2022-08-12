@@ -25,7 +25,6 @@ public:
     }
     file.close();
     data = pasarDatos(cola);
-    cout << "PasooooP" << endl;
     return data;
   }
 
@@ -33,15 +32,6 @@ private:
   Pasajero *pasarDatos(Cola<string> *rawCola) {
     Pasajero *datos;
     datos = new Pasajero[rawCola->getTam()];
-    for(int i=0; i<rawCola->getTam(); i++){
-		datos[i].idPasajero = 0;
-		datos[i].fechaNac = "";
-		datos[i].nombre = "";
-		datos[i].numeroDocumento = 0;
-		datos[i].adulto = true;
-	}
-    //cout << "Tamaño ideal: "<<rawCola->getTam() << endl
-	// << "Tamaño 'real': " << sizeof(*datos)/sizeof(datos[0]) << endl;
     string linea = "";
     Cola<string> *datos_separados;
 
@@ -53,22 +43,15 @@ private:
 	        datos_separados = split(linea);
 
 			datos[pos].idPasajero = atoi((datos_separados->desencolar()).c_str());
-		    //cout << datos[pos].idPasajero<<endl;
-		    //cout << "intenta" << endl;
+		    
 		    datos[pos].nombre = datos_separados->desencolar();
-		    //cout << p.nombre << endl;
 		    
 		    datos[pos].numeroDocumento = atoi(datos_separados->desencolar().c_str());
-		    //cout << p.numeroDocumento << endl;
 		    
 		    datos[pos].fechaNac = datos_separados->desencolar();
-		    //cout << p.fechaNac << endl;
 		    
 		    datos[pos].adulto = atoi(datos_separados->desencolar().c_str());
-		    //cout << p.adulto<<endl;
 		
-		    //datos[pos++] = p;
-		    //cout << datos[pos].idPasajero << endl;
 		    pos++;		
 		}
     }

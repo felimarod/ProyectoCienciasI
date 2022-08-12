@@ -19,16 +19,15 @@ public:
     if (file.fail()){
     	cout << "No se pudo abrir el archivo sillas.txt" << endl;
     	return NULL;	
-	}
-      
+	}   
 
     while (!file.eof()) { // mientras bo sea el final del archivo
       getline(file, texto);
       cola->encolar(texto);
     }
     file.close();
+    data = new Silla[cola->getTam()];
     data = pasarDatos(cola);
-    cout << "PasooooS" << endl;
     return data;
   }
 
@@ -51,13 +50,9 @@ private:
           cout << "La cola esta vacia \n";
 
         s.id_silla = atoi((datos_separados->desencolar()).c_str());
-        //cout << s.id_silla<<endl;
-      
         s.idModeloAvion = atoi((datos_separados->desencolar()).c_str());
-        //cout << s.idModeloAvion<<endl;
-      
         s.posicion = datos_separados->desencolar();
-        //cout << s.posicion << endl;
+
         datos[pos++] = s;	
 	  }
     }

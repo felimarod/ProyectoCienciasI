@@ -1,4 +1,4 @@
-#include "../modelos/Lugar.cpp"
+#include "../logica/ListaLugar.h"
 #include "Cola.h"
 #include <fstream>
 #include <iostream>
@@ -8,8 +8,8 @@ using namespace std;
 
 class LectorLugares {
 public:
-  Lugar *obtenerDatos() {
-    Lugar *data = NULL;
+  listaLugar obtenerDatos() {
+  	listaLugar ll;
     Cola<string> *cola = new Cola<string>;
     ifstream file;
     string texto;
@@ -17,27 +17,25 @@ public:
     file.open("persistencia/archivos/lugares.txt", ios::in); // abriendo el archivo
 
     if (file.fail())
-      return NULL;
+      return ll;
 
     while (!file.eof()) { // mientras bo sea el final del archivo
       getline(file, texto);
       cola->encolar(texto);
     }
     file.close();
-    data = pasarDatos(cola);
-    cout << "PasooooLu" << endl;
-    return data;
+    ll = pasarDatos(cola);
+    return ll;
   }
 
 private:
-  Lugar *pasarDatos(Cola<string> *rawCola) {
-    Lugar *datos;
-    datos = new Lugar[rawCola->getTam()];
+  listaLugar pasarDatos(Cola<string> *rawCola) {
+    listaLugar listaL;
     string linea = "";
     Cola<string> *datos_separados;
 
     int pos = 0;
-    // parsear el registro del archivo a un objeto Lugar
+    // parsear el registro del archivo a un objeto listaLugar
     while (!rawCola->isEmpty()) {
       Lugar lu;
       linea = rawCola->desencolar();
@@ -48,15 +46,12 @@ private:
           cout << "La cola esta vacia \n";
 
         lu.idLugar = atoi((datos_separados->desencolar()).c_str());
-        cout << lu.idLugar<<endl;
-      
         lu.nombre = datos_separados->desencolar();
-        cout << lu.nombre << endl;
 
-        datos[pos++] = lu;
+        listaL.insertarFinal(lu);
   	  }
     }
-    return datos;
+    return listaL;
   }
 
   Cola<string> *split(string str) {

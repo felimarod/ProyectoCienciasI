@@ -25,7 +25,6 @@ public:
     }
     file.close();
     data = pasarDatos(cola);
-    cout << "PasooooAv" << endl;
     return data;
   }
 
@@ -49,13 +48,8 @@ private:
           cout << "La cola esta vacia \n";
 
         av.idAvion = atoi((datos_separados->desencolar()).c_str());
-        cout << av.idAvion << endl;
-      
         av.capacidad = atoi((datos_separados->desencolar()).c_str());
-        cout << av.capacidad << endl;
-      
         av.idAerolinea = atoi((datos_separados->desencolar()).c_str());
-        cout << av.idAerolinea << endl;
 
         datos[pos++] = av;
       }

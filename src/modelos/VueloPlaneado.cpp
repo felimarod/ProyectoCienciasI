@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class VueloPlaneado{
+class VueloPlaneadoC{
   public:
     int id_vuelo;
     int idAerolinea;

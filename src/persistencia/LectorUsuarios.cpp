@@ -26,7 +26,6 @@ public:
     }
     file.close();
     data = pasarDatos(cola);
-    cout << "PasooooU" << endl;
     return data;
   }
 
@@ -50,16 +49,9 @@ private:
 
         // datos[pos].idUsuario = atoi((datos_separados->desencolar()).c_str());
         u.idUsuario = atoi((datos_separados->desencolar()).c_str());
-        cout << u.idUsuario << endl;
-      
         u.nombre = datos_separados->desencolar();
-        cout << u.nombre << endl;
-      
         u.numeroDocumento = atoi((datos_separados->desencolar()).c_str());
-        cout << u.numeroDocumento << endl;
-      
         u.sexo = datos_separados->desencolar();
-        cout << u.sexo << endl;
 
         datos[pos++] = u;	
 	  }

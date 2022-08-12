@@ -1,4 +1,4 @@
-#include "../modelos/VueloPlaneado.cpp"
+#include "../logica/ListaPlaneados.h"
 #include "Cola.h"
 #include <fstream>
 #include <iostream>
@@ -7,9 +7,9 @@
 using namespace std;
 
 class LectorVuelosPlaneados {
-public:
-  	VueloPlaneado *obtenerDatos() {
-	    VueloPlaneado *data = NULL;
+	public:
+		listaPlaneados obtenerDatos(){
+		listaPlaneados l;
 	    Cola<string> *cola = new Cola<string>;
 	    ifstream file;
 	    string texto;
@@ -17,29 +17,27 @@ public:
 	    file.open("persistencia/archivos/vuelos_planeados.txt", ios::in); // abriendo el archivo
 	
 	    if (file.fail())
-	      return NULL;
+	      return l;
 	
 	    while (!file.eof()) { // mientras bo sea el final del archivo
 	      getline(file, texto);
 	      cola->encolar(texto);
 	    }
 	    file.close();
-	    data = pasarDatos(cola);
-	    cout << "PasooooVP" << endl;
-	    return data;
+	    l = pasarDatos(cola);
+	    return l;
   }
 
 private:
-  VueloPlaneado *pasarDatos(Cola<string> *rawCola) {
-    VueloPlaneado *datos;
-    datos = new VueloPlaneado[rawCola->getTam()];
+  listaPlaneados pasarDatos(Cola<string> *rawCola) {
+  	listaPlaneados lista;
     string linea = "";
     Cola<string> *datos_separados;
 
     int pos = 0;
     // parsear el registro del archivo a un objeto usuario
     while (!rawCola->isEmpty()) {
-      VueloPlaneado vp;
+      VueloPlaneadoC vp;
       linea = rawCola->desencolar();
       if(linea != "") {
       	datos_separados = split(linea);
@@ -48,36 +46,27 @@ private:
           cout << "La cola esta vacia \n";
 
         vp.id_vuelo = atoi((datos_separados->desencolar()).c_str());
-        cout << vp.id_vuelo << endl;
       
         vp.idAerolinea = atoi((datos_separados->desencolar()).c_str());
-        cout << vp.idAerolinea << endl;
       
         vp.origen = atoi((datos_separados->desencolar()).c_str());
-        cout << vp.origen << endl;
       
         vp.destino = atoi((datos_separados->desencolar()).c_str());
-        cout << vp.destino << endl;
       
         vp.dia = atoi((datos_separados->desencolar()).c_str());
-        cout << vp.dia << endl;
       
         vp.hora_inicio = datos_separados->desencolar(); //la hora que se desencola debe ser de tipo (struct hora)
-        cout << vp.hora_inicio << endl;
       
         vp.duracion = atoi((datos_separados->desencolar()).c_str());
-        cout << vp.duracion << endl;
       
         vp.precio_adulto = atoi((datos_separados->desencolar()).c_str());
-        cout << vp.precio_adulto << endl;
       
         vp.precio_ninio = atoi((datos_separados->desencolar()).c_str());
-        cout << vp.precio_ninio << endl;
 
-        datos[pos++] = vp;	
+        lista.insertarFinal(vp);
 	  }
     }
-    return datos;
+    return lista;
   }
 
   Cola<string> *split(string str) {

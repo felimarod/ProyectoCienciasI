@@ -1,4 +1,4 @@
-#include "../modelos/Aerolinea.cpp"
+#include "../logica/ListaAerolinea.h"
 #include "Cola.h"
 #include <fstream>
 #include <iostream>
@@ -8,8 +8,8 @@ using namespace std;
 
 class LectorAerolineas {
 public:
-  Aerolinea *obtenerDatos() {
-    Aerolinea *data = NULL;
+  listaAerolinea obtenerDatos() {
+    listaAerolinea l;
     Cola<string> *cola = new Cola<string>;
     ifstream file;
     string texto;
@@ -17,22 +17,20 @@ public:
     file.open("persistencia/archivos/aerolineas.txt", ios::in); // abriendo el archivo
 
     if (file.fail())
-      return NULL;
+      return l;
 
     while (!file.eof()) { // mientras bo sea el final del archivo
       getline(file, texto);
       cola->encolar(texto);
     }
     file.close();
-    data = pasarDatos(cola);
-    cout << "PasooooA" << endl;
-    return data;
+    l = pasarDatos(cola);
+    return l;
   }
 
 private:
-  Aerolinea *pasarDatos(Cola<string> *rawCola) {
-    Aerolinea *datos;
-    datos = new Aerolinea[rawCola->getTam()];
+  listaAerolinea pasarDatos(Cola<string> *rawCola) {
+    listaAerolinea lista;
     string linea = "";
     Cola<string> *datos_separados;
 
@@ -42,25 +40,19 @@ private:
       Aerolinea a;
       linea = rawCola->desencolar();
       if (linea != "") {
-
         datos_separados = split(linea);
 
         if (datos_separados->colaVacia())
           cout << "La cola esta vacia \n";
 
         a.codigo = atoi((datos_separados->desencolar()).c_str());
-        cout << a.codigo << endl;
-      
         a.nombre = datos_separados->desencolar();
-        cout << a.nombre << endl;
-      
         a.cuenta_bancaria = datos_separados->desencolar();
-        cout << a.cuenta_bancaria << endl;
-
-        datos[pos++] = a;
+        
+        lista.insertarFinal(a); 
 	  }
     }
-    return datos;
+    return lista;
   }
 
   Cola<string> *split(string str) {
@@ -81,4 +73,3 @@ private:
     return results;
   }
 };
-

@@ -25,7 +25,6 @@ public:
 	    }
 	    file.close();
 	    data = pasarDatos(cola);
-	    cout << "PasooooVE" << endl;
 	    return data;
   }
 
@@ -48,16 +47,9 @@ private:
           cout << "La cola esta vacia \n";
 
         ve.idVueloEspecifico = atoi((datos_separados->desencolar()).c_str());
-        cout << ve.idVueloEspecifico << endl;
-      
-        ve.idVueloPlaneado = atoi((datos_separados->desencolar()).c_str());
-        cout << ve.idVueloPlaneado << endl;
-      
+        ve.idVueloPlaneado = atoi((datos_separados->desencolar()).c_str()); 
         ve.idModeloAvion = atoi((datos_separados->desencolar()).c_str());
-        cout << ve.idModeloAvion << endl;
-      
         ve.fecha_vuelo = datos_separados->desencolar();
-        cout << ve.fecha_vuelo << endl;
       
         datos[pos++] = ve;	
 	  }
