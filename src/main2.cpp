@@ -224,16 +224,14 @@ int seleccionarDestino(int id_origen) {
     }
     cout << "Ingrese el codigo del vuelo que desea tomar: " << endl;
     cin >> op;
-    //i=0;
-    //while(v[i].codigo != -1 ) {
     for (i = 0; v[i].codigo != -1; i++) {
-      if (v[i].codigo == op)
+      if (v[i].codigo == op) {
         estaEnElFiltro = true;
-      //i++;
+        break;
+      }
     }
-    cout << "Pasoooooo" << endl;
   } while (!estaEnElFiltro);
-  return op;
+  return v[i].destino;
 }
 void menuUsuario() {
   limpiar();
@@ -254,7 +252,8 @@ void menuUsuario() {
     op_origen = seleccionarOrigen();
     op_destino = seleccionarDestino(op_origen);
 
-    limpiar();
+    cout << "Llego este destino: " << listaLu.buscarLugar(op_origen) << endl;
+    //limpiar();
     cout << "Comprarás un vuelo de " << listaLu.buscarLugar(op_origen)->nombre
          << " a " << listaLu.buscarLugar(op_destino)->nombre
          << "\n\n¿Confirmas?(1.Si\t2.No)\n";
