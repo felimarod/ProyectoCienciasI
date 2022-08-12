@@ -51,12 +51,18 @@ class Multilista{
 		bool eliminar(int pos);
 		bool multilistaLLena();
 		bool multilistaVacia();
-	    void obtenerMultilista();
+		int* obtenerCabeceras();
+	    VueloPlaneado* obtenerMultilista();
 	    void obtenerDestinosAerolinea(int aerolinea);
 	    void obtenerPlanDeVuelosAerolinea(int aerolinea);
 		VueloPlaneado* obtenerVuelos(int origen,int destino,int op);
 		
 };
+
+int* Multilista :: obtenerCabeceras(){
+	if(multilistaVacia()) return NULL;
+	return cabeceras;
+}
 
 bool Multilista :: multilistaVacia(){
 	return tam==0;
@@ -122,11 +128,11 @@ bool Multilista :: insertar(int codigo,  int aerolinea, int origen, int destino,
 				x = false;
 				break;	
 			}
-			if(datos[k].sigPlanAerolinea==-1) break;
-			k=datos[k].sigPlanAerolinea;
+			if(datos[k].sigDestino==-1) break;
+			k=datos[k].sigDestino;
 		}
-		v.sigPlanAerolinea=-1;
-		if(x) datos[k].sigPlanAerolinea=i;
+		v.sigDestino=-1;
+		if(x) datos[k].sigDestino=i;
 	}
 	
 	
@@ -265,14 +271,9 @@ bool Multilista :: eliminar(int pos){
 }
 
 
-void Multilista :: obtenerMultilista(){
+VueloPlaneado* Multilista :: obtenerMultilista(){
 	
-	cout<<"\nCODIGO / ORIGEN / DESTINO / AEROLINEA / DIA / HORA SALIDA / DURACION / PRECIO ADULTO / PRECIO NINIO"<<endl;
-	
-	if(!multilistaVacia()){
-    	//Debe mostrar toda la multilista
-    	//primero leer en los archivos los campos que hacen falta (origen,destino,aerolinea) y luego si mostrar
-	}
+	return datos;
 	
 }
 

@@ -105,7 +105,27 @@ int main(int argc, char **argv) {
 	    cout << vuelos[i].precio_adulto<<"\t\n";
 	  }
 	
-	
+	cout<<endl;
+	int *cabeceras = m.obtenerCabeceras();
+	VueloPlaneado *v = m.obtenerMultilista();
+	int k = cabeceras[1];
+	if(!m.multilistaVacia()){//lista de plan semanal de vuelo aerolinea
+		while(k!=-1){
+			cout<<v[k].codigo<<"\t"<<listaLu.buscarLugar(v[k].origen)->nombre<<"\t\t"<<listaLu.buscarLugar(v[k].destino)->nombre;
+			cout<<"\t"<<v[k].hora_salida<<"\t"<<v[k].duracion<<"\t"<<v[k].precio_adulto<<"\t"<<v[k].precio_ninio<<endl;
+			if(v[k].sigPlanAerolinea==-1)break;
+			k=v[k].sigPlanAerolinea;
+		}
+	}
+	cout<<endl;
+	k=cabeceras[11];
+	if(!m.multilistaVacia()){//lista de destinos de la aerolinea
+		while(k!=-1){
+			cout<<listaLu.buscarLugar(v[k].destino)->nombre<<endl;
+			if(v[k].sigDestino==-1)break;
+			k=v[k].sigDestino;
+		}
+	}
 	
   /*cout << "\n-----------------------------" << endl;
   cout << "MENU BETA- eleccion de vuelo" << endl;
