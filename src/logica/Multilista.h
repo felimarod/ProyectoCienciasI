@@ -56,6 +56,7 @@ class Multilista{
 	    void obtenerDestinosAerolinea(int aerolinea);
 	    void obtenerPlanDeVuelosAerolinea(int aerolinea);
 		VueloPlaneado* obtenerVuelos(int origen,int destino,int op);
+		VueloPlaneado* obtenerVuelosOrigen(int origen);
 		
 };
 
@@ -285,7 +286,6 @@ void Multilista :: obtenerPlanDeVuelosAerolinea(int aerolinea){
     	//posicion de la cabecera es el entero aerolinea que se recibe por parametro
     	//primero leer en los archivos los campos que hacen falta (origen,destino,aerolinea) y luego si mostrar
 	}
-	
 }
 
 void Multilista :: obtenerDestinosAerolinea(int aerolinea){
@@ -366,5 +366,35 @@ VueloPlaneado* Multilista :: obtenerVuelos(int origen, int destino, int op){
 	return vuelos;
 }
 
+VueloPlaneado* Multilista :: obtenerVuelosOrigen(int origen){
+	VueloPlaneado *vuelos;
+	vuelos=new VueloPlaneado[200];
+
+	for(int i=0; i<200; i++){//inicializacion arreglo de vuelos ya filtrados
+				vuelos[i].codigo=-1;
+				vuelos[i].origen=-1;
+				vuelos[i].destino=-1;
+				vuelos[i].dia="";
+				vuelos[i].hora_salida="";
+				vuelos[i].duracion=-1;
+				vuelos[i].precio_adulto=-1;
+				vuelos[i].precio_ninio=-1;
+				vuelos[i].aerolinea=-1;
+				vuelos[i].sigDestino=-1;
+				vuelos[i].sigPlanAerolinea=-1;
+				vuelos[i].sigOrigenDestino=-1;
+			}
+	int i = cabeceras[0],j = 0;
+	while(datos[i].origen!=origen && i != -1){
+		i=datos[i].sigOrigenDestino;
+	}
+	while(datos[i].origen==origen && i != -1){
+		vuelos[j] = datos[i];
+		j++;
+		i=datos[i].sigOrigenDestino;
+	}
+	
+	return vuelos;
+}
 
 #endif

@@ -98,8 +98,8 @@ int main(int argc, char **argv) {
 		l=listaLu.buscarLugar(i);
 		cout<<l->nombre<<endl;
 	}
-	
-	 VueloPlaneado *vuelos = m.obtenerVuelos(2, 4, 0);
+	cout<<endl;
+	 VueloPlaneado *vuelos = m.obtenerVuelosOrigen(2);
 	  for (int i = 0; vuelos[i].codigo != -1; i++) {
 	    cout << vuelos[i].codigo<<"\t";
 	    cout << vuelos[i].precio_adulto<<"\t\n";
