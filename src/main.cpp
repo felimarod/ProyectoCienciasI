@@ -14,7 +14,23 @@
 #include <string.h>
 
 
-
+Cola<int> *splitFecha(string str) {
+	char SEP = '/';
+	
+	int posInit = 0;
+	int posFound = 0;
+	string splitted;
+	Cola<int> *results = new Cola<int>;
+	
+	while (posFound >= 0) {
+	  posFound = str.find(SEP, posInit);
+	  splitted = str.substr(posInit, posFound - posInit);
+	  posInit = posFound + 1;
+	  results->encolar(atoi(splitted.c_str()));
+	}
+	
+	return results;
+}
 /* run this program using the console pauser or add your own getch,
  * system("pause") or input loop */
 
@@ -127,6 +143,37 @@ int main(int argc, char **argv) {
 		}
 	}
 	
+	LectorVuelosEspecificos lectorVE;
+  listaEspecificos listaVE;
+  listaVE = lectorVE.obtenerDatos();
+  VueloEspecifico *ve;
+	nodoE *e = listaVE.obtenerCab();
+	int mes = 10;
+	int anio = 2022;
+	if(!listaVE.listaVacia()){
+		while(e!=NULL){
+			if(e->info.idVueloPlaneado == 40){
+				break;
+			}
+			cout<<"Especifico: "<<e->info.idVueloPlaneado<<endl;
+			e=e->sigPlan;
+		}
+		while (e != NULL){
+			Cola<int> *f = splitFecha(e->info.fecha_vuelo);
+			if(f->desencolar() == mes){
+				f->desencolar();
+				if(f->desencolar() == anio){
+					cout<<e->info.idVueloEspecifico<<" "<<e->info.idVueloPlaneado<<endl;
+				}
+			}
+			if(e->info.idVueloPlaneado != (e->sig->info).idVueloPlaneado){
+				break;
+			}
+			e=e->sig;
+			
+		}
+	}
+	
   /*cout << "\n-----------------------------" << endl;
   cout << "MENU BETA- eleccion de vuelo" << endl;
   cout << "-------------------------------" << endl;
@@ -183,3 +230,5 @@ cout << "Origen: ";
 
   return 0;
 }
+
+

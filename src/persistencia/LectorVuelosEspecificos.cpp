@@ -1,4 +1,4 @@
-#include "../modelos/VueloEspecifico.cpp"
+#include "../logica/ListaEspecificos.h"
 #include "Cola.h"
 #include <fstream>
 #include <iostream>
@@ -8,30 +8,29 @@ using namespace std;
 
 class LectorVuelosEspecificos {
 public:
-  	VueloEspecifico *obtenerDatos() {
-	    VueloEspecifico *data = NULL;
-	    Cola<string> *cola = new Cola<string>;
+  	listaEspecificos obtenerDatos() {
+	    listaEspecificos l;
+		Cola<string> *cola = new Cola<string>;
 	    ifstream file;
 	    string texto;
 	
 	    file.open("persistencia/archivos/vuelos_especificos.txt", ios::in); // abriendo el archivo
 	
 	    if (file.fail())
-	      return NULL;
+	      return l;
 	
 	    while (!file.eof()) { // mientras bo sea el final del archivo
 	      getline(file, texto);
 	      cola->encolar(texto);
 	    }
 	    file.close();
-	    data = pasarDatos(cola);
-	    return data;
+	    l = pasarDatos(cola);
+	    return l;
   }
 
 private:
-  VueloEspecifico *pasarDatos(Cola<string> *rawCola) {
-    VueloEspecifico *datos;
-    datos = new VueloEspecifico[rawCola->getTam()];
+  listaEspecificos pasarDatos(Cola<string> *rawCola) {
+  	listaEspecificos lista;
     string linea = "";
     Cola<string> *datos_separados;
 
@@ -51,10 +50,10 @@ private:
         ve.idModeloAvion = atoi((datos_separados->desencolar()).c_str());
         ve.fecha_vuelo = datos_separados->desencolar();
       
-        datos[pos++] = ve;	
+        lista.insertar(ve);	
 	  }
     }
-    return datos;
+    return lista;
   }
 
   Cola<string> *split(string str) {
