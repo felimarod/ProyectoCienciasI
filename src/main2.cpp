@@ -139,7 +139,8 @@ void menuIngreso() {
     menuAerolinea();
   else
     menuUsuario();
-  cout << "¿Deseas volver a ingresar?\n1. Si\n2. No\nIngresa tu elección: ";
+  // system("pause");
+  cout << "\n¿Deseas volver a ingresar?\n1. Si\n2. No\nIngresa tu elección: ";
   cin >> op;
   if (op == 1)
     menuIngreso();
@@ -192,15 +193,46 @@ void menuAerolinea() {
     }
   }
 }
-int seleccionarLugar(string ori_des) {
+int seleccionarOrigen() {
   int op = 0;
   while (op <= 0 || op > listaLu.tamLista()) {
     limpiar();
     for (int i = 1; i <= listaLu.tamLista(); i++)
       cout << i << "\t" << listaLu.buscarLugar(i)->nombre << endl;
-    cout << "Elija su lugar de " << ori_des << endl;
+    cout << "Elija su lugar de origen" << endl;
     cin >> op;
   }
+  return op;
+}
+int seleccionarDestino(int id_origen) {
+  int op = -1;
+  bool estaEnElFiltro = false;
+  VueloPlaneado *v;
+  int i;
+
+  do {
+    limpiar();
+    cout << "Los codigos y destinos de los vuelos que tienen el origen "
+         << listaLu.buscarLugar(id_origen)->nombre << " son:\n\n";
+    v = m.obtenerVuelosOrigen(id_origen);
+    for (i = 0; v[i].codigo != -1; i++) {
+      cout << "Codigo: " << v[i].codigo
+           << "\nDestino: " << listaLu.buscarLugar(v[i].destino)->nombre
+           << "\nDuración: " << v[i].duracion
+           << "\nPrecio niño: " << v[i].precio_ninio
+           << "\nPrecio adulto: " << v[i].precio_adulto << "\n\n";
+    }
+    cout << "Ingrese el codigo del vuelo que desea tomar: " << endl;
+    cin >> op;
+    //i=0;
+    //while(v[i].codigo != -1 ) {
+    for (i = 0; v[i].codigo != -1; i++) {
+      if (v[i].codigo == op)
+        estaEnElFiltro = true;
+      //i++;
+    }
+    cout << "Pasoooooo" << endl;
+  } while (!estaEnElFiltro);
   return op;
 }
 void menuUsuario() {
@@ -214,15 +246,23 @@ void menuUsuario() {
    *   + Duracion 2
    **/
   int op_origen, op_destino, op_ord;
+  bool exitoso = false;
+  int acepta = 0;
   op_origen = op_destino = op_ord = -1;
 
-  op_origen = seleccionarLugar("origen");
-  op_destino = seleccionarLugar("destino");
-  while (op_origen == op_destino) {
-    cout << "Por favor seleccione un lugar de destino diferente al lugar de "
-            "origen";
-    op_destino = seleccionarLugar("destino");
-  }
+  do {
+    op_origen = seleccionarOrigen();
+    op_destino = seleccionarDestino(op_origen);
+
+    limpiar();
+    cout << "Comprarás un vuelo de " << listaLu.buscarLugar(op_origen)->nombre
+         << " a " << listaLu.buscarLugar(op_destino)->nombre
+         << "\n\n¿Confirmas?(1.Si\t2.No)\n";
+    cin >> acepta;
+    acepta--;
+    if (acepta == 0)
+      exitoso = true;
+  } while (!exitoso);
 
   while (op_ord != 0 && op_ord != 1 && op_ord != 2) {
     limpiar();
@@ -236,13 +276,15 @@ void menuUsuario() {
   }
 
   VueloPlaneado *vuelos = m.obtenerVuelos(op_origen, op_destino, op_ord);
-  for (int i = 0; vuelos[i].codigo != -1; i++) {
+  int i = 0;
+  while (vuelos[i].codigo != -1){
     cout << vuelos[i].codigo << "\t";
-    if(op_ord == 0)
+    if (op_ord == 0)
       cout << vuelos[i].precio_adulto << "\n";
-    else if(op_ord == 1)
+    else if (op_ord == 1)
       cout << vuelos[i].precio_ninio << "\n";
-    else if(op_ord == 2)
+    else if (op_ord == 2)
       cout << vuelos[i].duracion << "\n";
+    i++;
   }
 }
