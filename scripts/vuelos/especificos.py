@@ -8,7 +8,7 @@ import datetime as date
     # x = x + date.timedelta(days=7)
 # print(x.strftime("%j"))
 
-RUTA_ARCHIVOS = "../../archivos/"
+RUTA_ARCHIVOS = "../../src/persistencia/archivos/"
 planeados = []
 aviones = []
 
